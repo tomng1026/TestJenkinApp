@@ -5,6 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
+                sh 'npx react-native run-android'
             }
         }
         stage('Test') {
