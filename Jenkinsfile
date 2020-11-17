@@ -5,6 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
+                sh 'emulator -avd 3_Pixel_3_XL_API_28 &'
                 sh 'npx react-native run-android'
             }
         }
