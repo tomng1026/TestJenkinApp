@@ -78,11 +78,15 @@ import com.android.build.OutputFile
  * ]
  */
 
+// project.ext.react = [
+//     entryFile: "packages/mobile/index.js",
+//     enableHermes: false,  // clean and rebuild if changing
+//     root: "../../../../",
+//     cliPath: "./cli.js"
+// ]
+
 project.ext.react = [
-    entryFile: "packages/mobile/index.js",
     enableHermes: false,  // clean and rebuild if changing
-    root: "../../../../",
-    cliPath: "./cli.js"
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
