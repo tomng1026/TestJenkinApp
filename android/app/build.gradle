@@ -14,7 +14,14 @@ import com.android.build.OutputFile
  * project.ext.react = [
  *   // the name of the generated asset file containing your JS bundle
  *   bundleAssetName: "index.android.bundle",
- *
+ */
+ project.ext.react = [
+     entryFile: "packages/mobile/index.js",
+    enableHermes: false,  // clean and rebuild if changing
+    root: "../../../../",
+    cliPath: "./cli.js"
+ ]
+ /*
  *   // the entry file for bundle generation. If none specified and
  *   // "index.android.js" exists, it will be used. Otherwise "index.js" is
  *   // default. Can be overridden with ENTRY_FILE environment variable.
