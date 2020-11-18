@@ -2,21 +2,20 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Build Android') {
             steps {
                 echo 'Building..'
-                sh 'npm install --save react-native@latest'
-                sh 'npm i react'
-                // sh 'emulator -avd 3_Pixel_3_XL_API_28 &'
-                // sh 'npx react-native run-android'
-                sh 'npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/index.android.bundle --assets-dest android/app/build/intermediates/res/merged/release/ && cd android && ./gradlew assembleRelease'
-                // sh 'npx --help'
-                // sh 'npm'
+                // sh 'npm install --save react-native@latest'
+                // sh 'npm i react'
+                // sh 'npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/index.android.bundle --assets-dest android/app/build/intermediates/res/merged/release/ && cd android && ./gradlew assembleRelease'
             }
         }
-        stage('Test') {
+        stage('Build IOS') {
             steps {
-                echo 'Testing..'
+                echo 'Build IOS..'
+                sh 'npm install --save react-native@latest'
+                sh 'npm i react'
+                sh 'npx react-native run-ios'
             }
         }
         stage('Deploy') {
