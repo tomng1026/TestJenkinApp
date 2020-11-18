@@ -13,6 +13,7 @@ pipeline {
         stage('Build IOS') {
             steps {
                 echo 'Build IOS..'
+                sh 'cd ios && pod install'
                 sh 'npm install --save react-native@latest'
                 sh 'npm i react'
                 sh 'npx react-native run-ios'
