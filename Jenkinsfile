@@ -2,11 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Clean workspace') {
-            steps {
-                cleanWs()
-            }
-        }
         stage('PrepareBuild') {
             steps {
                 sh 'npm install --save react-native@latest'
