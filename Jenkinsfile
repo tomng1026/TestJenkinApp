@@ -6,6 +6,7 @@ pipeline {
             steps {
                 echo 'Building..'
                 sh 'npm install --save react-native@latest'
+                sh 'npm i react'
                 // sh 'npx --version'
                 // sh 'npx react-native --version'
                 
