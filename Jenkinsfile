@@ -4,6 +4,7 @@ pipeline {
     stages {
         stage('PrepareBuild') {
             steps {
+                echo 'hello world'
                 withNPM {
                     sh 'npm install --save react-native@latest'
                     sh 'npm i react'
