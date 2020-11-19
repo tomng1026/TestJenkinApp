@@ -5,7 +5,7 @@ pipeline {
         stage('PrepareBuild') {
             steps {
                 echo 'hello world'
-                withNPM(npmrcConfig:'my-custom-npmrc') {
+                withNPM {
                     echo 'Performing npm build...'
                     sh 'npm install'
                 }
