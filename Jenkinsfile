@@ -5,6 +5,11 @@ pipeline {
         stage('PrepareBuild') {
             steps {
                 echo 'hello world'
+                withNPM(npmrcConfig:'my-custom-npmrc') {
+                    echo 'Performing npm build...'
+                    sh 'npm install'
+                }
+                echo 'hello world end'
                 withNPM {
                     sh 'npm install --save react-native@latest'
                     sh 'npm i react'
