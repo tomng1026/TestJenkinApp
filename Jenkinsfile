@@ -4,8 +4,10 @@ pipeline {
     stages {
         stage('PrepareBuild') {
             steps {
-                sh 'npm install --save react-native@latest'
-                sh 'npm i react'
+                withNPM {
+                    sh 'npm install --save react-native@latest'
+                    sh 'npm i react'
+                }
             }
         }
         stage('Build Android') {
@@ -20,8 +22,8 @@ pipeline {
         stage('Build IOS') {
             steps {
                 echo 'Build IOS..'
-                // sh 'cd ios && pod install'
-                // sh 'npx react-native run-ios'
+            // sh 'cd ios && pod install'
+            // sh 'npx react-native run-ios'
             }
         }
         stage('DeployHello') {
