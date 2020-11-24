@@ -14,13 +14,13 @@ uploadUrl=`echo $jsonString| jq ".upload_url" | xargs`
 if [ -z "$uploadId" ]
 then
       echo "error occur in uploadAndroidScript"
-      exit -1
+      exit 1
 fi
 
 if [ -z "$uploadUrl" ]
 then
       echo "error occur in uploadAndroidScript"
-      exit -1
+      exit 2
 fi
 
 echo "start upload apk or ipa ......"
@@ -31,6 +31,6 @@ releaseId=`echo $jsonString| jq ".release_id" | xargs`
 if [ -z "$releaseId" ]
 then
       echo "error occur in commitUploadResource"
-      exit -1
+      exit 3
 fi
 #updateToGroupId ownerName appName appCenterToken releaseId groupId
