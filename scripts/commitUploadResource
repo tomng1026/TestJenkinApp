@@ -3,7 +3,7 @@ uploadId=$1
 ownerName=$2
 appName=$3
 appCenterToken=$4
-
+echo "uploadId=====$uploadId"
 apiUrl="https://api.appcenter.ms/v0.1/apps/$ownerName/$appName/release_uploads/$uploadId"
 
 curl -X PATCH $apiUrl -H "accept: application/json" -H "Content-Type: application/json" -H "X-API-Token: $appCenterToken" -d '{"status":"committed"}'
