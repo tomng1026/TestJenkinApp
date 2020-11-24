@@ -8,7 +8,6 @@ notes="release"
 
 jsonString=`uploadAndroidScript $1 $2 $3`
 uploadId=`echo $jsonString| jq ".upload_id"`
-uploadUrl=`echo $jsonString| jq ".upload_url"`
-echo $uploadUrl
+uploadUrl=`echo $jsonString| jq ".upload_url" | xargs`
 uploadBuild $uploadUrl $apkPath $notes $appCenterToken
 commitUploadResource $uploadId $ownerName $appName $appCenterToken
