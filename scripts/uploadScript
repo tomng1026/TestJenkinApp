@@ -25,7 +25,9 @@ else
       exit 0
 fi
 
+echo "start upload apk or ipa ......"
 uploadBuild $uploadUrl $apkPath $notes $appCenterToken
+echo "finished upload apk or ipa."
 jsonString=`commitUploadResource $uploadId $ownerName $appName $appCenterToken`
 releaseId=`echo $jsonString| jq ".release_id" | xargs`
 if [ -z "$releaseId" ]
