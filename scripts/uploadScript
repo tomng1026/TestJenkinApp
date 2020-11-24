@@ -1,0 +1,14 @@
+#!/bin/bash
+export PATH=$PATH:./scripts
+ownerName=$1
+appName=$2
+appCenterToken=$3
+apkPath=$4
+notes="release"
+
+jsonString=`uploadAndroidScript $1 $2 $3`
+uploadId=`echo $jsonString| jq ".upload_id"`
+uploadUrl=`echo $jsonString| jq ".upload_url"`
+echo $uploadUrl
+uploadBuild $uploadUrl $apkPath $notes $appCenterToken
+commitUploadResource $uploadId $ownerName $appName $appCenterToken

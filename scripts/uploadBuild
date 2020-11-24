@@ -1,0 +1,9 @@
+#!/bin/bash
+uploadUrl=$1
+apkPath=$2
+notes=$3
+appCenterToken=$4
+
+curl -H "X-API-Token:$appCenterToken" -F ipa=@$apkPath -F notes="$notes" $uploadUrl
+
+
