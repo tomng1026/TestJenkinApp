@@ -14,15 +14,11 @@ uploadUrl=`echo $jsonString| jq ".upload_url" | xargs`
 if [ -z "$uploadId" ]
 then
       exit -1
-else
-      exit 0
 fi
 
 if [ -z "$uploadUrl" ]
 then
       exit -1
-else
-      exit 0
 fi
 
 echo "start upload apk or ipa ......"
@@ -33,7 +29,5 @@ releaseId=`echo $jsonString| jq ".release_id" | xargs`
 if [ -z "$releaseId" ]
 then
       exit -1
-else
-      exit 0
 fi
 #updateToGroupId ownerName appName appCenterToken releaseId groupId
