@@ -5,9 +5,12 @@ appName=$2
 appCenterToken=$3
 apkPath=$4
 notes="release"
+groupId=$5
 
 jsonString=`uploadAndroidScript $1 $2 $3`
 uploadId=`echo $jsonString| jq ".upload_id" | xargs`
 uploadUrl=`echo $jsonString| jq ".upload_url" | xargs`
 uploadBuild $uploadUrl $apkPath $notes $appCenterToken
-commitUploadResource $uploadId $ownerName $appName $appCenterToken
+jsonString=`commitUploadResource $uploadId $ownerName $appName $appCenterToken`
+releaseId=`echo $jsonString| jq ".release_id" | xargs`
+updateToGroupId ownerName appName appCenterToken releaseId groupId

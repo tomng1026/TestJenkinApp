@@ -1,0 +1,10 @@
+#!/bin/bash
+ownerName=$1
+appName=$2
+appCenterToken=$3
+releaseId=$4
+groupId=$5
+
+apiUrl="https://api.appcenter.ms/v0.1/apps/$ownerName/$appName/releases/$releaseId/groups/$groupId"
+
+curl -X PUT $apiUrl -H "accept: application/json" -H "Content-Type: application/json" -H "X-API-Token: $appCenterToken"
