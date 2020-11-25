@@ -7,19 +7,19 @@ apkPath=$4
 notes="release"
 #groupId=$5
 
-jsonString=`uploadAndroidScript $1 $2 $3`
+jsonString=`uploadIosOrAndroidScript $1 $2 $3`
 uploadId=`echo $jsonString| jq ".upload_id" | xargs`
 uploadUrl=`echo $jsonString| jq ".upload_url" | xargs`
 
 if [ -z "$uploadId" ]
 then
-      echo "error occur in uploadAndroidScript"
+      echo "error occur in uploadIosOrAndroidScript"
       exit 1
 fi
 
 if [ -z "$uploadUrl" ]
 then
-      echo "error occur in uploadAndroidScript"
+      echo "error occur in uploadIosOrAndroidScript"
       exit 2
 fi
 
