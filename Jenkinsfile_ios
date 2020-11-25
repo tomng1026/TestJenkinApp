@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+    environment {
+        ANDROID_HOME = '/Users/tom.kt.ng/Library/Android/sdk'
+        ANDROID_SDK_ROOT = '/Users/tom.kt.ng/Library/Android/sdk'
+        JAVA_HOME = '/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home'
+        PATH = '/bin:/usr/bin:/usr/local/bin:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/emulator/:./scripts'
+    }
+    stages {
+        stage('Clear workspace') {
+            steps {
+                cleanWs()
+            }
+        }
+        stage('git clone') {
+            steps {
+                git branch: 'master', credentialsId: 'tom-ng-2020-11-20', url: 'https://github.com/tomng1026/TestJenkinApp.git'
+            }
+        }
+        stage('PrepareBuild') {
+            steps {
+                sh 'npm install --save react-native@latest'
+                sh 'npm i react'
+            }
+        }
+        stage('Build Ios') {
+            steps {
+                sh 'cd ios && xcodebuild clean archive -workspace TestJenkinApp.xcworkspace -scheme TestJenkinApp -archivePath ./testHelloWorld.xcarchive | xcpretty'
+                sh 'cd ios && xcodebuild -exportArchive -archivePath ./testHelloWorld.xcarchive -exportPath . -exportOptionsPlist ../export.plist | xcpretty'
+            }
+        }
+        stage('Publish') {
+            steps {
+                sh './scripts/uploadScript tong_1026-hotmail.com test-jenkin_mobile_ios 0e922c173e2fc111846e6075e091dbe478e88f0a `find ./ios -type f -iname "*.ipa”`'
+            }
+        }
+    }
+}

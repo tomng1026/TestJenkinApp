@@ -24,6 +24,11 @@ then
 fi
 
 echo "start upload apk or ipa ......"
+if [ -f "$apkPath" ]; then
+    echo "$apkPath exists."
+else 
+    exit 3
+fi
 uploadBuild $uploadUrl $apkPath $notes $appCenterToken
 echo "finished upload apk or ipa."
 jsonString=`commitUploadResource $uploadId $ownerName $appName $appCenterToken`
@@ -31,6 +36,6 @@ releaseId=`echo $jsonString| jq ".release_id" | xargs`
 if [ -z "$releaseId" ]
 then
       echo "error occur in commitUploadResource"
-      exit 3
+      exit 4
 fi
 #updateToGroupId ownerName appName appCenterToken releaseId groupId

@@ -1,0 +1,40 @@
+pipeline {
+    agent any
+    environment {
+        ANDROID_HOME = '/Users/tom.kt.ng/Library/Android/sdk'
+        ANDROID_SDK_ROOT = '/Users/tom.kt.ng/Library/Android/sdk'
+        JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home"
+        PATH = '/bin:/usr/bin:/usr/local/bin:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/emulator/:./scripts'
+    }
+    stages {
+        stage('Clear workspace') {
+            steps {
+                cleanWs()
+            }
+        }
+        stage('git clone') {
+            steps {
+                git branch: 'master', credentialsId: 'tom-ng-2020-11-20', url: 'https://github.com/tomng1026/TestJenkinApp.git'
+            }
+        }
+        stage('PrepareBuild') {
+            steps {
+                    sh 'npm install --save react-native@latest'
+                    sh 'npm i react'
+            }
+        }
+        stage('Build Android') {
+            steps {
+                echo 'Building...'
+                sh 'npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/index.android.bundle --assets-dest android/app/build/intermediates/res/merged/release/ && cd android && ./gradlew assembleRelease'
+            }
+        }
+        stage('Publish') {
+            steps {
+                // sh 'npm install --save appcenter-cli'
+                // sh 'npx appcenter login --token 5fbc34766e94175e75ce017cd0b9cc42c1ba1704 && export HOME=`pwd` && export APK_DIR=/android/app/build/outputs/apk/release && export APK_FILE=`cd .$APK_DIR && find . -type f -iname "*.apk"` && npx appcenter distribute release --app tong_1026-hotmail.com/test-jenkin_mobile_ms --file $HOME/$APK_DIR`echo $APK_FILE|sed s/.//` --group "helloworldGroup1"'
+                sh 'export HOME=`pwd` && export APK_DIR=/android/app/build/outputs/apk/release && export APK_FILE=`cd .$APK_DIR && find . -type f -iname "*.apk"` && export APK_FULL_PATH=$HOME/$APK_DIR`echo $APK_FILE|sed s/.//` && ./scripts/uploadScript tong_1026-hotmail.com test-jenkin_mobile_ms 090bab57c6c7dc17b21fb66d0e20f1deeeb38a81 $APK_FULL_PATH'
+            }
+        }
+    }
+}
