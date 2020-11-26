@@ -3,6 +3,6 @@ PID=$(ps | grep -e "launchPackager.command" | grep -v grep | awk '{print $1}')
 if [ -z "$PID" ] 
 then
     echo "no opened react native console"
-    exit 1
+    exit 0
 fi
 kill $PID
