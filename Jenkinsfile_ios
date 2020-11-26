@@ -31,7 +31,7 @@ pipeline {
                 sh 'security unlock-keychain -p strong00 ~/Library/Keychains/jenkin_dev.keychain-db'
                 sh 'cd ios && xcodebuild clean archive -workspace TestJenkinApp.xcworkspace -scheme TestJenkinApp -archivePath ./testHelloWorld.xcarchive | xcpretty'
                 sh 'cd ios && xcodebuild -exportArchive -archivePath ./testHelloWorld.xcarchive -exportPath . -exportOptionsPlist ../export.plist | xcpretty'    
-                sh 'kill $(ps | grep -e "launchPackager.command" | grep -v grep | awk '{print $1}')'
+                sh 'killRectNativeConsole'
             }
         }
         // stage('Build Android') {
