@@ -1,0 +1,2 @@
+#!/bin/bash
+kill $(ps | grep -e \"launchPackager.command\" | grep -v grep | awk '{print $1}')
