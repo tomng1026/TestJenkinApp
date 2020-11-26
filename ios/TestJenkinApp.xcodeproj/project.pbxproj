@@ -660,7 +660,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 5NUFCLUBVR;
 				ENABLE_BITCODE = NO;
 				GCC_OPTIMIZATION_LEVEL = 2;
 				INFOPLIST_FILE = TestJenkinApp/Info.plist;
@@ -690,7 +690,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 5NUFCLUBVR;
 				GCC_OPTIMIZATION_LEVEL = 2;
 				INFOPLIST_FILE = TestJenkinApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
