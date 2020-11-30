@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { label 'android'}
     environment {
         ANDROID_HOME = '/Users/tom.kt.ng/Library/Android/sdk'
         ANDROID_SDK_ROOT = '/Users/tom.kt.ng/Library/Android/sdk'
